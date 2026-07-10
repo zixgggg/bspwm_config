@@ -24,3 +24,4 @@ for((i=0;i<${#ps_to_run[@]};i++));do
 done
 mouse_sensitivity=-0.5
 xinput list --id-only | xargs -I {} sh -c "xinput list-props {} 2>/dev/null | grep -q 'libinput Accel Speed' && xinput set-prop {} 'libinput Accel Profile Enabled' 0 1 0 && xinput set-prop {} 'libinput Accel Speed' $mouse_sensitivity"
+#改mouse_sensitivity可以改滑鼠靈敏度
