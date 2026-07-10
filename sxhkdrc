@@ -1,0 +1,63 @@
+#!/bin/bash
+super+Return
+	x-terminal-emulator
+super+b
+	flatpak run app.zen_browser.zen
+super+space
+	rofi -show drun
+super+q
+	bspc node -c
+super+shift+q
+	bspc node -k
+super+r
+	pkill -USR1 -x sxhkd;notify-send reload sxhkd;\
+	bspc wm -r;notify-send reload bspwm
+super+f
+	bspc node -t ~fullscreen 
+super+t
+	bspc node -t ~tiled
+alt+f
+	bspc node -t ~floating
+super+p
+	bspc node -t ~pseudo_tiled
+super+shift+e
+	rofi -modi "power_menu:~/.power/power_menu" -show power_menu
+super+l
+	i3lock
+super+ctrl+s
+	flameshot gui
+super+ctrl+f
+	flameshot full
+#focus window
+super+{w,a,s,d}
+	bspc node -f {north,west,south,east}
+super+{Up,Left,Down,Right}
+	bspc node -f {north,west,south,east}
+
+#move window
+super+shift+{w,a,s,d}
+	bspc node -s {north,west,south,east}
+super+shift+{Up,Left,Down,Right}
+	bspc node -s {north,west,south,east}
+	
+#resize window
+#alt+{Up,Left,Down,Right}
+#    bspc node -z {top 0 -20,left -20 0,bottom 0 20,right 20 0}
+alt+{w,a,s,d}
+	bspc node -z {top 0 -20,left -20 0,bottom 0 20,right 20 0}
+alt+shift+{Up,Left,Down,Right}
+	bspc node -z {top 0 20,left 20 0,bottom 0 -20,right -20 0}
+alt+shift+{w,a,s,d}
+	bspc node -z {top 0 20,left 20 0,bottom 0 -20,right -20 0}
+
+#focus workspace
+super+{1,2,3,4,5,6,7,8,9,0}
+	bspc desktop -f {1,2,3,4,5,6,7,8,9,0}
+#move window to workspace
+super+shift+{1,2,3,4,5,6,7,8,9,0}
+	bspc node -d {1,2,3,4,5,6,7,8,9,0}
+#move window position
+alt +ctrl+{Left,Down,Up,Right}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
+alt +ctrl+{a,s,w,d}
+    bspc node -v {-20 0,0 20,0 -20,20 0}

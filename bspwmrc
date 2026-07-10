@@ -1,0 +1,26 @@
+#!/bin/bash
+bspc config normal_border_color "#5B5B5B"
+bspc config focused_border_color "#00EC00"
+bspc config active_border_color "#009600"
+bspc config focus_follows_pointer true
+bspc config border_width 3
+bspc config window_gap 50
+bspc config gapless_monocle true
+bspc config borderless_monocle true
+# 讓 bspwm 完美接管 lemonbar
+bspc rule -a Bar manage=off panel=on
+#bspc rule -a sigma_bar manage=off panel=on
+#bspc rule -a sigma_bar state=floating rectangle=1920x24+0+0 border=off layer=above focus=off manage=on
+bspc monitor -d 1 2 3 4 5 6 7 8 9 0
+feh --no-fehbg --bg-fill $HOME/.background/46719-1920x1080-desktop-1080p-rick-and-morty-background-image.jpg &
+ps_to_kill=("sxhkd" "sigmabar" "redshift" "xss-lock" "$HOME/.gonna_lock.py" "picom")
+ps_to_run=("sxhkd" "sigmabar" "redshift" "xss-lock --transfer-sleep-lock -- i3lock --nofork" "$HOME/.gonna_lock.py" "picom")
+
+for((i=0;i<${#ps_to_kill[@]};i++));do
+	pkill -f ${ps_to_kill[$i]}
+done
+for((i=0;i<${#ps_to_run[@]};i++));do
+	eval ${ps_to_run[$i]} &
+done
+mouse_sensitivity=-0.5
+xinput list --id-only | xargs -I {} sh -c "xinput list-props {} 2>/dev/null | grep -q 'libinput Accel Speed' && xinput set-prop {} 'libinput Accel Profile Enabled' 0 1 0 && xinput set-prop {} 'libinput Accel Speed' $mouse_sensitivity"
