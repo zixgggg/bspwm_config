@@ -24,10 +24,12 @@ super+shift+e
 	rofi -modi "power_menu:~/.power/power_menu" -show power_menu
 super+l
 	i3lock
-super+ctrl+s
+super+shift+s
 	flameshot gui
-super+ctrl+f
+super+shift+f
 	flameshot full
+super+shift+d
+	flatpak run com.discordapp.Discord
 #focus window
 super+{w,a,s,d}
 	bspc node -f {north,west,south,east}
@@ -35,8 +37,8 @@ super+{Up,Left,Down,Right}
 	bspc node -f {north,west,south,east}
 
 #move window
-super+shift+{w,a,s,d}
-	bspc node -s {north,west,south,east}
+#super+shift+{w,a,s,d}
+#	bspc node -s {north,west,south,east}
 super+shift+{Up,Left,Down,Right}
 	bspc node -s {north,west,south,east}
 	
