@@ -28,7 +28,7 @@ ps_to_run=(
 	"xss-lock --transfer-sleep-lock -- i3lock --nofork"
 	"$HOME/.gonna_lock.py"
 	"picom"
-	"$HOME/.lemonbar.sh |lemonbar -f notocjk -b"
+	"$HOME/.lemonbar.sh |lemonbar -f notocjk  -g 1770x24+0+1056"
 	"stalonetray --geometry 150x1+1770+1056 --background \"#5B5B5B\" --window-type dock  --sticky true"
 	"$HOME/.show_title.sh|lemonbar -f notocjk"
 	"nm-applet"
