@@ -4,16 +4,35 @@ bspc config focused_border_color "#00EC00"
 bspc config active_border_color "#009600"
 bspc config focus_follows_pointer true
 bspc config border_width 3
-bspc config window_gap 50
+bspc config window_gap 25
 bspc config gapless_monocle true
 bspc config borderless_monocle true
 bspc rule -a discord desktop=^2
-#bspc rule -a sigma_bar manage=off panel=on
-#bspc rule -a sigma_bar state=floating rectangle=1920x24+0+0 border=off layer=above focus=off manage=on
 bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 feh --no-fehbg --bg-fill $HOME/.background/46719-1920x1080-desktop-1080p-rick-and-morty-background-image.jpg &
-ps_to_kill=("redshift" "sxhkd" "sigmabar" "xss-lock" "$HOME/.gonna_lock.py" "picom")
-ps_to_run=("redshift" "sxhkd" "sigmabar" "xss-lock --transfer-sleep-lock -- i3lock --nofork" "$HOME/.gonna_lock.py" "picom")
+ps_to_kill=(
+	"redshift"
+	"sxhkd"
+	"xss-lock"
+	".gonna_lock.py"
+	"picom"
+	"lemonbar"
+	"stalonetray"
+	".show_title.sh"
+	".lemonbar.sh"
+	"nm-applet"
+)
+ps_to_run=(
+	"redshift"
+	"sxhkd"
+	"xss-lock --transfer-sleep-lock -- i3lock --nofork"
+	"$HOME/.gonna_lock.py"
+	"picom"
+	"$HOME/.lemonbar.sh |lemonbar -f notocjk -b"
+	"stalonetray --geometry 150x1+1770+1056 --background \"#5B5B5B\" --window-type dock  --sticky true"
+	"$HOME/.show_title.sh|lemonbar -f notocjk"
+	"nm-applet"
+)
 for((i=0;i<${#ps_to_kill[@]};i++));do
 	pkill -f ${ps_to_kill[$i]}
 done
@@ -25,3 +44,7 @@ mouse_sensitivity=-0.5
 xinput list --id-only | xargs -I {} sh -c "xinput list-props {} 2>/dev/null | grep -q 'libinput Accel Speed' && xinput set-prop {} 'libinput Accel Profile Enabled' 0 1 0 && xinput set-prop {} 'libinput Accel Speed' $mouse_sensitivity"
 #改mouse_sensitivity可以改滑鼠靈敏度
 numlockx on &
+xset s 300 300 & #設定xss-lock的鎖屏時間(秒) 重新登入後生效
+#xset q可以查詢xset相關設定
+#第一個值設定 timeout (秒)
+#第二個值設定 interval (秒)（通常保持與 timeout 相同或更短）

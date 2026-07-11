@@ -30,6 +30,16 @@ super+shift+f
 	flameshot full
 super+shift+d
 	flatpak run com.discordapp.Discord
+#volume
+super+u
+	pactl set-sink-volume @DEFAULT_SINK@ +1%
+	#wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+
+super+j
+	pactl set-sink-volume @DEFAULT_SINK@ -1%
+	#wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
+super+m
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+	#wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 #focus window
 super+{w,a,s,d}
 	bspc node -f {north,west,south,east}
